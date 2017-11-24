@@ -19,7 +19,7 @@
         android:gravity="center"
         android:textColor="#FFFF"
         android:textSize="16sp"
-        android:id="@+id/magnitude"
+        android:id="@+id/temp"
         tools:text="test" />
 
     <LinearLayout
@@ -38,9 +38,9 @@
             android:fontFamily="sans-serif-medium"
             android:maxLines="1"
             android:textAllCaps="true"
-            android:textColor="@color/textColorEarthquakeDetails"
+            android:textColor="@color/textColorWeatherDetails"
             android:textSize="12sp"
-            android:id="@+id/direction"
+            android:id="@+id/description"
             tools:text="11111" />
 
         <TextView
@@ -48,12 +48,18 @@
             android:layout_height="wrap_content"
             android:maxLines="2"
             android:ellipsize="end"
-            android:textColor="@color/textColorEarthquakeLocation"
+            android:textColor="@color/textColorWeatherLocation"
             android:textSize="16sp"
-            android:id="@+id/place"
+            android:id="@+id/main"
             tools:text="This is not helpful"/>
 
     </LinearLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/clear"
+        android:id="@+id/icon"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -67,7 +73,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
-            android:textColor="@color/textColorEarthquakeDetails"
+            android:textColor="@color/textColorWeatherDetails"
             android:textSize="12sp"
             android:id="@+id/time"
             tools:text="5pm"/>
@@ -76,7 +82,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
-            android:textColor="@color/textColorEarthquakeDetails"
+            android:textColor="@color/textColorWeatherDetails"
             android:textSize="12sp"
             android:id="@+id/date"
             tools:text="Hello" />

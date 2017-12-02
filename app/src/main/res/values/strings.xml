@@ -16,4 +16,6 @@
 <resources>
     <string name="app_name">Quake Report</string>
     <string name="empty_view">Something went wrong.</string>
+    <string name="location">Minneapolis</string>
+    <string name="key">location</string>
 </resources>

@@ -17,14 +17,19 @@ package com.example.android.quakereport;
 
 import android.app.LoaderManager;
 import android.content.Context;
+import android.content.Intent;
 import android.content.Loader;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -41,7 +46,9 @@ public class WeatherActivity extends AppCompatActivity implements LoaderManager.
 
     public static final String LOG_TAG = WeatherActivity.class.getName();
 
-    private static final String USGS_REQUEST_URL = "http://api.wunderground.com/api/48328dbbfb350a2f/hourly/q/MN/Minneapolis.json";
+    private static final String AUTO_COMPLETE_URL = "http://autocomplete.wunderground.com/aq?query=";
+
+    private static final String WEATHER_URL = "http://api.wunderground.com/api/48328dbbfb350a2f/hourly/q/MN/Minneapolis.json";
 
     private static final int WEATHER_LOADER_ID = 1;
 
@@ -95,8 +102,12 @@ public class WeatherActivity extends AppCompatActivity implements LoaderManager.
     //Implement the method onCreateLoader which executes when initialized
     @Override
     public Loader<List<Weather>> onCreateLoader(int i, Bundle bundle) {
-        Log.i(LOG_TAG, "Creating loader");
-        return new WeatherLoader(this, USGS_REQUEST_URL);
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String location = sharedPreferences.getString(getString(R.string.key),getString(R.string.location));
+        Uri baseUri = Uri.parse(WEATHER_URL);
+
+        return new WeatherLoader(this, WEATHER_URL);
     }
 
     //Execute this method when the load is finished
@@ -125,6 +136,16 @@ public class WeatherActivity extends AppCompatActivity implements LoaderManager.
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.menu, menu);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        int id = item.getItemId();
+        if (id == R.id.settings){
+            startActivity(new Intent(this, SettingsActivity.class));
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 
